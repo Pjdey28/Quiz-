@@ -40,6 +40,10 @@ function showQuestion()
     opt2.innerText=q.options[1];
     opt3.innerText=q.options[2];
     opt4.innerText=q.options[3];
+    opt1.style.borderColor="";
+    opt2.style.borderColor="";
+    opt3.style.borderColor="";
+    opt4.style.borderColor="";    
 }
 function checkAnswer(opt)
 {
@@ -54,10 +58,30 @@ function checkAnswer(opt)
 
     if(quizqa[CurrentQuestion].options[opt]==quizqa[CurrentQuestion].answer)
         {
-            selected.style.backgroundColor="green";
+            selected.style.borderColor="green";
             score+=1;
         }
     else
-        selected.style.backgroundColor="red";
+        selected.style.borderColor="red";
+        /*setTimeout(()=>{
+        CurrentQuestion++;
+        if (CurrentQuestion < quizqa.length) {
+            showQuestion();
+        } else {
+            alert("Quiz Over! Your score is: " + score);
+        }
+    },400);*/
+}
+function nextQuestion()
+{
+    CurrentQuestion++;
+        if (CurrentQuestion < quizqa.length) {
+            showQuestion();
+        } else {
+            alert("Quiz Over! Your score is: " + score);
+        }
 }
 showQuestion();
+        
+    
+
