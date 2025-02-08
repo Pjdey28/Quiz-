@@ -1,12 +1,12 @@
-#quiz{
-    display:flex;
-    flex-direction:column;
-    margin:100px;
-    width:30%;
-    justify-content: center;
-    align-items: center;
+body{
+        display: flex;
+        margin:100px;
+        width:30%;
+        justify-content: center;
+        align-items: center;
+    
+    }
 
-}
 .options{
     box-sizing: border-box;
     border-width: 2px;
@@ -19,10 +19,7 @@
     text-align:center;
     width:300px;
 }
-h1{
-    padding-left: 100px;
-    padding-bottom: 30px;
-}
+
 #question
 {
     padding:20px;
@@ -31,4 +28,37 @@ h1{
     height: 30px;
     width:120px;
     cursor: pointer;
+}
+#container{
+    width: 420px;
+    padding: 100px;
+    border-radius: 8px;
+    background: lightpink;
+    row-gap: 30px;
+    flex-direction: column;
+    align-items: center;
+}
+.circular-progress{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circular-progress::before{
+    content: "";
+    position: absolute;
+    height: 210px;
+    width: 210px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.progress-value{
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    color: #7d2ae8;
 }

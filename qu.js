@@ -47,6 +47,11 @@ function showQuestion()
 }
 function checkAnswer(opt)
 {
+    opt1.disabled=true;
+    opt2.disabled=true;
+    opt3.disabled=true;
+    opt4.disabled=true;
+    let selected;
     if(opt==0)
         selected=opt1;
     if(opt==1)
@@ -63,14 +68,6 @@ function checkAnswer(opt)
         }
     else
         selected.style.borderColor="red";
-        /*setTimeout(()=>{
-        CurrentQuestion++;
-        if (CurrentQuestion < quizqa.length) {
-            showQuestion();
-        } else {
-            alert("Quiz Over! Your score is: " + score);
-        }
-    },400);*/
 }
 function nextQuestion()
 {
@@ -78,7 +75,29 @@ function nextQuestion()
         if (CurrentQuestion < quizqa.length) {
             showQuestion();
         } else {
-            alert("Quiz Over! Your score is: " + score);
+            let percent=score/5*100;
+            ques.style.display="none";
+            opt1.style.display="none";
+            opt2.style.display="none";
+            opt3.style.display="none";
+            opt4.style.display="none";
+            document.getElementById("next").style.display="none";
+            document.getElementById("container").style.display="flex";
+            let circularProgress = document.querySelector(".circular-progress"),
+            progressValue = document.querySelector(".progress-value");
+            let progressStartValue = 0,    
+            progressEndValue = percent,    
+            speed =50 ;
+            
+            let progress = setInterval(() => {
+                progressStartValue++;
+                progressValue.textContent = `${progressStartValue}%`
+                circularProgress.style.background = `conic-gradient(#7d2ae8 ${progressStartValue * 3.6}deg, #ededed 0deg)`
+                if(progressStartValue == progressEndValue){
+                    clearInterval(progress);
+                }    
+            }, speed);
+            document.getElementById("score").innerHTML="Score : "+ score;
         }
 }
 showQuestion();
