@@ -55,6 +55,7 @@ function checkAnswer(opt)
         return;
    
     let selected;
+    let correct;
     if(opt==0)
         selected=opt1;
     if(opt==1)
@@ -63,14 +64,24 @@ function checkAnswer(opt)
         selected=opt3;
     if(opt==3)
         selected=opt4;
-
+    if(opt1.innerText==quizqa[CurrentQuestion].answer)
+        correct=opt1;
+    if(opt2.innerText==quizqa[CurrentQuestion].answer)
+        correct=opt2;
+    if(opt3.innerText==quizqa[CurrentQuestion].answer)
+        correct=opt3;
+    if(opt4.innerText==quizqa[CurrentQuestion].answer)
+        correct=opt4;
     if(quizqa[CurrentQuestion].options[opt]==quizqa[CurrentQuestion].answer)
         {
             selected.style.borderColor="darkgreen";
             score+=1;
         }
     else
-        selected.style.borderColor="red";
+        {
+            selected.style.borderColor="red";
+            correct.style.borderColor="green";
+        }
 }
 function nextQuestion()
 {
@@ -105,10 +116,23 @@ function nextQuestion()
                     clearInterval(progress);
                 }    
             }, speed);
-            document.getElementById("score").innerHTML="Score : "+ score;
+            document.getElementById("score").innerHTML="Score : "+ score+"/"+5;
         }
 }
+function resetQuiz()
+{
+    CurrentQuestion=0;
+    score=0;
+    document.getElementById("container").style.display = "none";
+    ques.style.display="block";
+    opt1.style.display="flex";
+    opt2.style.display="flex";
+    opt3.style.display="flex";
+    opt4.style.display="flex";
+    document.getElementById("next").style.display="block";
+    showQuestion();
+}
 showQuestion();
-        
+
     
 
