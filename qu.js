@@ -28,6 +28,8 @@ const quizqa=[
 let CurrentQuestion=0;
 let score=0;
 let check=false;
+const correctAnswer= new Audio("./correct-6033.mp3");
+const wrongAnswer=new Audio("./wronganswer-37702.mp3");
 const ques=document.getElementById("question");
 const opt1=document.getElementById("option_1");
 const opt2=document.getElementById("option_2");
@@ -74,11 +76,13 @@ function checkAnswer(opt)
         correct=opt4;
     if(quizqa[CurrentQuestion].options[opt]==quizqa[CurrentQuestion].answer)
         {
+            correctAnswer.play();
             selected.style.borderColor="darkgreen";
             score+=1;
         }
     else
         {
+            wrongAnswer.play();
             selected.style.borderColor="red";
             correct.style.borderColor="green";
         }

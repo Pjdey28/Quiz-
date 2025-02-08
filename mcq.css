@@ -109,7 +109,3 @@ button:hover
     background-color: rgba(108, 243, 108, 0.7);
 
 }
-.options:active
-{
-    background-color: rgb(142, 142, 239);
-}
