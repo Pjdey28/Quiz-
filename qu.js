@@ -27,6 +27,7 @@ const quizqa=[
 ];
 let CurrentQuestion=0;
 let score=0;
+let check=false;
 const ques=document.getElementById("question");
 const opt1=document.getElementById("option_1");
 const opt2=document.getElementById("option_2");
@@ -34,6 +35,7 @@ const opt3=document.getElementById("option_3");
 const opt4=document.getElementById("option_4");
 function showQuestion()
 {
+    check=false;
     const q=quizqa[CurrentQuestion];
     ques.innerText=q.question;
     opt1.innerText=q.options[0];
@@ -47,10 +49,11 @@ function showQuestion()
 }
 function checkAnswer(opt)
 {
-    opt1.disabled=true;
-    opt2.disabled=true;
-    opt3.disabled=true;
-    opt4.disabled=true;
+    if(check==false)
+        check=true;
+    else
+        return;
+   
     let selected;
     if(opt==0)
         selected=opt1;
@@ -63,7 +66,7 @@ function checkAnswer(opt)
 
     if(quizqa[CurrentQuestion].options[opt]==quizqa[CurrentQuestion].answer)
         {
-            selected.style.borderColor="green";
+            selected.style.borderColor="darkgreen";
             score+=1;
         }
     else
@@ -91,9 +94,14 @@ function nextQuestion()
             
             let progress = setInterval(() => {
                 progressStartValue++;
+                if(percent==0)
+                    --progressStartValue;
                 progressValue.textContent = `${progressStartValue}%`
-                circularProgress.style.background = `conic-gradient(#7d2ae8 ${progressStartValue * 3.6}deg, #ededed 0deg)`
-                if(progressStartValue == progressEndValue){
+                if(percent==0)
+                    circularProgress.style.background = `conic-gradient(#7d2ae8 ${3.6}deg,rgb(135, 249, 251) 0deg)`
+                else
+                    circularProgress.style.background = `conic-gradient(#7d2ae8 ${progressStartValue * 3.6}deg,rgb(135, 249, 251) 0deg)`
+                if(progressStartValue >= progressEndValue){
                     clearInterval(progress);
                 }    
             }, speed);
